@@ -1,0 +1,131 @@
+<div class="w-full max-w-[1500px] mx-auto px-3 sm:px-6 mt-1 text-center">
+
+  <!-- ÍCONOS REDONDOS MINI CENTRADOS -->
+  <div class="flex justify-center items-center space-x-2 mb-1">
+
+    <!-- Ícono 1 -->
+    <div class="w-8 h-8 bg-teal-500 rounded-lg
+              flex items-center justify-center shadow-md">
+      <i class="fa-solid fa-compass text-white text-sm"></i>
+    </div>
+
+    <!-- Ícono 2 -->
+    <div class="w-8 h-8 bg-gray-800 dark:bg-gray-700 rounded-lg
+              flex items-center justify-center shadow-md">
+      <i class="fa-solid fa-sparkles text-white text-sm"></i>
+    </div>
+
+  </div>
+
+  <!-- TÍTULO MINI CENTRADO -->
+  <h2 class="text-gray-900 dark:text-white text-base font-bold tracking-wide mb-1 text-center">
+    Explorar
+  </h2>
+
+  <!-- SUBTÍTULO MINI -->
+  <p class="text-gray-600 dark:text-gray-300 text-xs max-w-[580px] mx-auto text-center mb-3">
+    Todos los memecómics a tu disposición. Encuentra los temas de tu interés.
+  </p>
+
+  <!-- BUSCADOR MINI CENTRADO -->
+  <div class="flex justify-center mb-4">
+    <div class="flex items-center w-full sm:w-[260px]
+              bg-gray-200 dark:bg-[#2a2a2a]
+              text-gray-700 dark:text-gray-300
+              px-3 py-1.5 rounded-full shadow-md space-x-2 text-xs">
+
+      <!-- Icono lupa -->
+      <i class="fa-solid fa-magnifying-glass text-gray-500 dark:text-gray-400 text-sm"></i>
+
+      <!-- Input -->
+      <input type="text" placeholder="Buscar…" [(ngModel)]="busqueda" (ngModelChange)="onBusquedaChange(busqueda)"
+        class="w-full bg-transparent focus:outline-none
+             text-gray-800 dark:text-gray-200 text-xs" />
+
+      <!-- Botón limpiar -->
+      <button *ngIf="busqueda" (click)="busqueda=''; onBusquedaChange('')">
+        <i class="fa-solid fa-xmark text-gray-500 hover:text-gray-700
+                 dark:hover:text-gray-300 text-sm"></i>
+      </button>
+
+    </div>
+  </div>
+
+
+  <!-- GRID MÁS GRANDE -->
+  <div class="grid
+              grid-cols-1
+              sm:grid-cols-2
+              md:grid-cols-3
+              xl:grid-cols-4
+              gap-10
+              mt-2">
+
+    <div *ngFor="let post of publicacionesMostradas" class="bg-white dark:bg-[#1b1c1d]
+             text-gray-900 dark:text-gray-100
+             rounded-2xl shadow-2xl overflow-hidden">
+
+      <!-- IMAGEN MÁS GRANDE -->
+      <img [src]="post.imagen" class="w-full object-cover
+               h-[400px] sm:h-[340px] md:h-[360px] xl:h-[380px]
+               rounded-t-2xl" />
+
+      <!-- CONTENIDO MÁS GRANDE -->
+      <div class="px-5 py-5 text-center">
+
+        <h2 class="text-[17px] font-extrabold uppercase tracking-wide leading-tight
+                   text-gray-900 dark:text-white mb-[5px]">
+          {{ post.titulo }}
+        </h2>
+
+        <p class="text-gray-700 dark:text-gray-300 text-[14px] leading-tight mb-[5px]">
+          {{ post.texto }}
+        </p>
+
+        <div class="flex justify-center items-center space-x-2 leading-none mb-[6px]">
+          <span class="font-semibold text-[14px] text-gray-800 dark:text-gray-200">
+            &#64;{{ post.usuario }}
+          </span>
+          <i *ngIf="post.verificado" class="fa-solid fa-crown text-yellow-500 dark:text-yellow-400 text-[14px]"></i>
+        </div>
+
+        <div class="flex justify-center items-center space-x-7 mt-3
+                    text-gray-700 dark:text-gray-300">
+
+          <div class="flex items-center space-x-1">
+            <i class="fa-solid fa-trophy text-[14px]"></i>
+            <span class="text-[12px]">{{ post.likes }}</span>
+          </div>
+
+          <div class="flex items-center space-x-1">
+            <i class="fa-regular fa-comment-dots text-[14px]"></i>
+            <span class="text-[12px]">{{ post.comentarios }}</span>
+          </div>
+
+          <div class="flex items-center space-x-1">
+            <i class="fa-solid fa-retweet text-[14px]"></i>
+            <span class="text-[12px]">{{ post.compartidos }}</span>
+          </div>
+
+          <span class="bg-green-600 text-white px-3 py-[2px] rounded-md
+                       text-[10px] uppercase font-semibold">
+            Nuevo
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- BOTÓN VER MÁS -->
+  <div class="flex justify-center mt-12">
+    <button *ngIf="mostrarBoton" (click)="verMas()"
+      class="text-green-700 dark:text-green-400 hover:opacity-85 text-xl font-semibold underline">
+      — Ver más —
+    </button>
+  </div>
+
+</div>

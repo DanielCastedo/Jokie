@@ -1,0 +1,45 @@
+<div class="max-w-7xl mx-auto px-6 sm:px-10 md:px-16 lg:ml-72 py-4 transition-all duration-300">
+  <!-- Título -->
+  <div class="flex items-center justify-between mb-6">
+    <h2 class="text-xl sm:text-2xl font-semibold text-gray-800 dark:text-gray-100">
+      Sugerencias de hoy
+    </h2>
+    <div class="flex items-center text-sm text-gray-500 dark:text-gray-400 space-x-2">
+      <i class="fa-solid fa-location-dot text-blue-500"></i>
+      <span>Santa Cruz de la Sierra · 65 km</span>
+    </div>
+  </div>
+
+  <!-- Grid de productos -->
+  <div
+    class="grid gap-4 sm:gap-5 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5"
+  >
+    <div
+      *ngFor="let p of productos"
+      class="bg-white dark:bg-[#242526] border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
+    >
+      <!-- Imagen -->
+      <div class="relative">
+        <img [src]="p.imagen" alt="{{ p.nombre }}" class="w-full h-40 sm:h-48 object-cover" />
+        <span
+          *ngIf="p.etiqueta"
+          class="absolute top-2 left-2 bg-blue-600 text-white text-xs px-2 py-1 rounded-md"
+          >{{ p.etiqueta }}</span
+        >
+      </div>
+
+      <!-- Info -->
+      <div class="p-3">
+        <h3 class="font-semibold text-gray-900 dark:text-gray-100 text-sm truncate">
+          {{ p.precio }}
+        </h3>
+        <p class="text-sm text-gray-700 dark:text-gray-300 line-clamp-2">
+          {{ p.nombre }}
+        </p>
+        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+          {{ p.ubicacion }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

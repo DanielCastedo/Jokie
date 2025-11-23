@@ -1,0 +1,35 @@
+<div
+  class="absolute right-4 top-14 w-80 bg-white dark:bg-[#242526]
+         border border-gray-200 dark:border-gray-700 rounded-xl shadow-xl
+         text-gray-800 dark:text-gray-200 overflow-hidden animate-fadeIn"
+>
+  <!-- Sección perfiles -->
+  <div class="p-3 border-b border-gray-200 dark:border-gray-700">
+    <div *ngFor="let perfil of perfiles; let first = first" class="flex items-center space-x-3 mb-3 last:mb-0 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg p-2">
+      <img [src]="perfil.foto" alt="perfil" class="w-10 h-10 rounded-full" />
+      <div>
+        <p class="font-semibold text-sm">{{ perfil.nombre }}</p>
+        <p *ngIf="perfil.subtitulo" class="text-xs text-gray-500">{{ perfil.subtitulo }}</p>
+      </div>
+    </div>
+
+    <button
+      class="w-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-sm font-medium py-2 rounded-md mt-2 transition"
+    >
+      <i class="fa-solid fa-users mr-2"></i> Ver todos los perfiles
+    </button>
+  </div>
+
+  <!-- Opciones -->
+  <div class="p-2 space-y-1">
+    <div *ngFor="let op of opciones" class="flex items-center space-x-3 px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer transition">
+      <i class="fa-solid" [ngClass]="op.icono"></i>
+      <span>{{ op.texto }}</span>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="text-xs text-gray-500 dark:text-gray-400 border-t border-gray-200 dark:border-gray-700 p-3">
+    Privacidad · Condiciones · Publicidad · Opciones de anuncios · Cookies · Más
+  </div>
+</div>

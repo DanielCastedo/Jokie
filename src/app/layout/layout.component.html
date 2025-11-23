@@ -1,0 +1,22 @@
+<div class="flex flex-col min-h-screen bg-gray-100 dark:bg-[#18191a] transition-colors duration-300">
+
+  <app-header (sidebarToggle)="toggleSidebar()"></app-header>
+
+  <div class="flex flex-1">
+
+    <app-sidebar
+      [isVisible]="sidebarVisible"
+      (close)="closeSidebar()">
+    </app-sidebar>
+
+    <!-- Backdrop: aparece cuando el sidebar está abierto y cierra al hacer click -->
+    <div *ngIf="sidebarVisible"
+         (click)="closeSidebar()"
+         class="fixed inset-0 bg-black/50 z-30 transition-opacity"></div>
+
+    <main class="flex-1 p-4 pt-[70px] overflow-y-auto">
+      <router-outlet></router-outlet>
+    </main>
+
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<div class="p-8">
+  <h1 class="text-3xl font-bold mb-6 text-blue-600 text-center">
+    Categorías
+  </h1>
+
+  <div class="overflow-x-auto shadow rounded-2xl">
+    <table class="min-w-full text-sm text-left text-gray-700">
+      <thead class="bg-blue-500 text-white uppercase text-xs">
+        <tr>
+          <th class="px-6 py-3">ID</th>
+          <th class="px-6 py-3">Nombre</th>
+          <th class="px-6 py-3 text-center">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let categoria of categorias" class="border-b hover:bg-gray-100">
+          <td class="px-6 py-4 font-medium">{{ categoria.id }}</td>
+          <td class="px-6 py-4">{{ categoria.nombre }}</td>
+          <td class="px-6 py-4 text-center">
+            <button class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg mr-2">Editar</button>
+            <button class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
