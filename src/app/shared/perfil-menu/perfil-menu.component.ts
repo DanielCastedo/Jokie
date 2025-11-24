@@ -14,17 +14,17 @@ export class PerfilMenuComponent {
     {
       nombre: 'Pablo Daniel Castedo Suárez',
       foto: 'https://i.pravatar.cc/100?u=perfil1',
-      subtitulo: null,
+      subtitulo: 'Perfil Principal',
     },
     {
       nombre: 'Swageer',
       foto: 'https://i.pravatar.cc/100?u=swageer',
-      subtitulo: null,
+      subtitulo: 'Creador de contenido',
     },
     {
       nombre: 'Swagestilo',
       foto: 'https://i.pravatar.cc/100?u=swagestilo',
-      subtitulo: null,
+      subtitulo: 'Página',
     },
   ];
 
@@ -35,6 +35,33 @@ export class PerfilMenuComponent {
     { icono: 'fa-message', texto: 'Enviar comentarios' },
     { icono: 'fa-right-from-bracket', texto: 'Cerrar sesión' },
   ];
+
+  handleOpcion(texto: string) {
+    console.log('Opción seleccionada:', texto);
+
+    // Manejar diferentes opciones
+    switch (texto) {
+      case 'Cerrar sesión':
+        this.cerrarSesion();
+        break;
+      case 'Configuración y privacidad':
+        // Navegar a configuración
+        break;
+      case 'Pantalla y accesibilidad':
+        // Abrir menú de accesibilidad
+        break;
+      default:
+        // Otras acciones
+        break;
+    }
+  }
+
+  cerrarSesion() {
+    // Lógica de cerrar sesión
+    console.log('Cerrando sesión...');
+    this.close.emit();
+    // Aquí puedes agregar tu lógica de logout
+  }
 
   cerrar() {
     this.close.emit();

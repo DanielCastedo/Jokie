@@ -1,19 +1,27 @@
 <header
   class="fixed top-0 left-0 right-0 z-50
          flex items-center justify-between
-         px-4 py-1.5 border-b
-         bg-white dark:bg-[#1f1f1f]
-         border-gray-200 dark:border-gray-700
+         px-4 py-2.5
          text-gray-800 dark:text-gray-200
-         backdrop-blur-md shadow-sm">
+         bg-cover bg-center bg-no-repeat
+         relative
+         overflow-visible
+         shadow-[0_4px_12px_rgba(0,0,0,0.1)]"
+  style="background-image: url('assets/images/fondo_header.jpg');">
+
+  <!-- Overlay semi-transparente MÁS LIGERO para que se vea la imagen -->
+  <div class="absolute inset-0 bg-black/5 dark:bg-black/30 -z-10"></div>
+
+  <!-- Borde inferior difuminado -->
+  <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-b from-gray-600/50 to-transparent dark:from-gray-600/50"></div>
 
   <!-- 📌 IZQUIERDA -->
-  <div class="flex items-center space-x-5">
+  <div class="flex items-center space-x-5 relative z-10">
 
     <!-- Botón menú -->
     <button
       (click)="toggleSidebar()"
-      class="p-1.5 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+      class="p-1.5 rounded-lg hover:bg-black/50 text-white dark:hover:bg-black/50 transition">
       <i class="fa-solid fa-bars text-lg"></i>
     </button>
 
@@ -21,22 +29,22 @@
     <nav class="hidden md:flex items-center space-x-4 text-sm font-medium">
 
       <a routerLink="/memecómics" routerLinkActive="active-nav"
-         class="nav-link">
+         class="nav-link text-white hover:text-gray-200 transition">
         Memecómics
       </a>
 
       <a routerLink="/nosotros" routerLinkActive="active-nav"
-         class="nav-link">
+         class="nav-link text-white hover:text-gray-200 transition">
         Nosotros
       </a>
 
       <a routerLink="/soporte" routerLinkActive="active-nav"
-         class="nav-link">
+         class="nav-link text-white hover:text-gray-200 transition">
         Soporte
       </a>
 
       <a routerLink="/terminos" routerLinkActive="active-nav"
-         class="nav-link">
+         class="nav-link text-white hover:text-gray-200 transition">
         Términos
       </a>
 
@@ -45,13 +53,13 @@
   </div>
 
   <!-- 📌 DERECHA -->
-  <div class="flex items-center space-x-4">
+  <div class="flex items-center space-x-4 relative z-10">
 
     <!-- LOGO + BUSCADOR -->
     <div class="flex items-center space-x-2">
 
       <!-- LOGO -->
-      <div class="text-blue-500 dark:text-white font-extrabold text-lg tracking-wide">
+      <div class="text-white dark:text-white font-extrabold text-lg tracking-wide">
         JOKIE
       </div>
 
@@ -59,10 +67,12 @@
       <input
         type="text"
         placeholder="Buscar..."
-        class="hidden sm:block bg-gray-100 dark:bg-[#333]
-               dark:text-gray-200 text-gray-700
+        class="hidden sm:block bg-white/20 dark:bg-white/10
+               backdrop-blur-sm
+               text-white placeholder-white/70
                px-3 py-1 rounded-full text-xs focus:outline-none
-               w-40 shadow-inner" />
+               focus:ring-2 focus:ring-white/50
+               w-40 shadow-inner border border-white/30" />
     </div>
 
     <!-- USUARIO -->
@@ -70,33 +80,36 @@
 
       <!-- Dark mode -->
       <button (click)="toggleDarkMode()"
-        class="p-1.5 rounded-full bg-gray-200 dark:bg-[#333]
-               hover:bg-gray-300 dark:hover:bg-gray-600 transition">
+        class="p-1.5 rounded-full bg-white/20 dark:bg-white/10
+               backdrop-blur-sm border border-white/30
+               hover:bg-white/30 dark:hover:bg-white/20 transition">
         <i
           [class]="isDarkMode
-            ? 'fa-solid fa-sun text-yellow-400 text-base'
-            : 'fa-solid fa-moon text-gray-600 dark:text-gray-300 text-base'">
+            ? 'fa-solid fa-sun text-yellow-300 text-base'
+            : 'fa-solid fa-moon text-white text-base'">
         </i>
       </button>
 
       <!-- Notificaciones -->
       <button
         class="hidden sm:flex p-1.5 rounded-full
-               bg-gray-200 dark:bg-[#333]
-               hover:bg-gray-300 dark:hover:bg-gray-600 transition">
-        <i class="fa-solid fa-bell text-base"></i>
+               bg-white/20 dark:bg-white/10
+               backdrop-blur-sm border border-white/30
+               hover:bg-white/30 dark:hover:bg-white/20 transition">
+        <i class="fa-solid fa-bell text-base text-white"></i>
       </button>
 
       <!-- Avatar -->
-      <div class="relative">
+      <div class="relative perfil-container">
         <img
-          src="https://i.pravatar.cc/40"
-          class="w-7 h-7 rounded-full border border-gray-300 dark:border-gray-600 cursor-pointer hover:scale-105 transition"
+          src="https://i.pravatar.cc/40?u=DanielCastedo"
+          alt="Daniel Castedo"
+          class="w-8 h-8 rounded-full border-2 border-white/50 cursor-pointer hover:scale-110 hover:border-white transition-all"
           (click)="toggleMenuPerfil()" />
 
         <app-perfil-menu
           *ngIf="mostrarMenu"
-          (close)="mostrarMenu = false">
+          (close)="closeMenu()">
         </app-perfil-menu>
       </div>
 

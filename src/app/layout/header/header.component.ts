@@ -1,12 +1,12 @@
-import { Component, EventEmitter, Output, Renderer2 } from '@angular/core';
+import { Component, EventEmitter, Output, Renderer2, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router'; // ✅ IMPORTANTE
+import { RouterModule } from '@angular/router';
 import { PerfilMenuComponent } from '../../shared/perfil-menu/perfil-menu.component';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, RouterModule, PerfilMenuComponent], // ✅ Agrega RouterModule
+  imports: [CommonModule, RouterModule, PerfilMenuComponent],
   templateUrl: './header.component.html',
 })
 export class HeaderComponent {
@@ -20,6 +20,16 @@ export class HeaderComponent {
     this.setDarkMode(this.isDarkMode);
   }
 
+  // ✅ Cerrar menú al hacer click fuera
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+    // Solo cerrar si el click no fue dentro del contenedor del perfil
+    if (!target.closest('.perfil-container')) {
+      this.mostrarMenu = false;
+    }
+  }
+
   toggleDarkMode() {
     this.isDarkMode = !this.isDarkMode;
     this.setDarkMode(this.isDarkMode);
@@ -31,6 +41,10 @@ export class HeaderComponent {
 
   toggleMenuPerfil() {
     this.mostrarMenu = !this.mostrarMenu;
+  }
+
+  closeMenu() {
+    this.mostrarMenu = false;
   }
 
   private setDarkMode(enable: boolean) {

@@ -1,35 +1,75 @@
 <div
-  class="absolute right-4 top-14 w-80 bg-white dark:bg-[#242526]
-         border border-gray-200 dark:border-gray-700 rounded-xl shadow-xl
-         text-gray-800 dark:text-gray-200 overflow-hidden animate-fadeIn"
+  class="absolute right-0 top-12 w-80
+         bg-white dark:bg-[#242526]
+         border border-gray-200 dark:border-gray-700
+         rounded-xl shadow-2xl
+         text-gray-800 dark:text-gray-200
+         overflow-hidden
+         animate-fadeIn
+         z-[200]"
 >
   <!-- Sección perfiles -->
   <div class="p-3 border-b border-gray-200 dark:border-gray-700">
-    <div *ngFor="let perfil of perfiles; let first = first" class="flex items-center space-x-3 mb-3 last:mb-0 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg p-2">
-      <img [src]="perfil.foto" alt="perfil" class="w-10 h-10 rounded-full" />
-      <div>
-        <p class="font-semibold text-sm">{{ perfil.nombre }}</p>
-        <p *ngIf="perfil.subtitulo" class="text-xs text-gray-500">{{ perfil.subtitulo }}</p>
+    <div
+      *ngFor="let perfil of perfiles"
+      class="flex items-center space-x-3 mb-3 last:mb-0
+             cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700
+             rounded-lg p-2 transition-all duration-200">
+      <img
+        [src]="perfil.foto"
+        [alt]="perfil.nombre"
+        class="w-10 h-10 rounded-full object-cover border-2 border-gray-200 dark:border-gray-600" />
+      <div class="flex-1 min-w-0">
+        <p class="font-semibold text-sm truncate">{{ perfil.nombre }}</p>
+        <p *ngIf="perfil.subtitulo" class="text-xs text-gray-500 dark:text-gray-400 truncate">
+          {{ perfil.subtitulo }}
+        </p>
       </div>
     </div>
 
     <button
-      class="w-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-sm font-medium py-2 rounded-md mt-2 transition"
+      class="w-full bg-gray-100 dark:bg-gray-700
+             hover:bg-gray-200 dark:hover:bg-gray-600
+             text-sm font-medium py-2.5 rounded-lg mt-2
+             transition-all duration-200
+             flex items-center justify-center space-x-2"
     >
-      <i class="fa-solid fa-users mr-2"></i> Ver todos los perfiles
+      <i class="fa-solid fa-users"></i>
+      <span>Ver todos los perfiles</span>
     </button>
   </div>
 
   <!-- Opciones -->
   <div class="p-2 space-y-1">
-    <div *ngFor="let op of opciones" class="flex items-center space-x-3 px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer transition">
-      <i class="fa-solid" [ngClass]="op.icono"></i>
-      <span>{{ op.texto }}</span>
+    <div
+      *ngFor="let op of opciones"
+      (click)="handleOpcion(op.texto)"
+      class="flex items-center space-x-3 px-3 py-2.5
+             rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700
+             cursor-pointer transition-all duration-200
+             group">
+      <i
+        class="fa-solid w-5 text-gray-600 dark:text-gray-400
+               group-hover:text-gray-800 dark:group-hover:text-gray-200
+               transition-colors"
+        [ngClass]="op.icono">
+      </i>
+      <span class="text-sm font-medium">{{ op.texto }}</span>
     </div>
   </div>
 
   <!-- Footer -->
-  <div class="text-xs text-gray-500 dark:text-gray-400 border-t border-gray-200 dark:border-gray-700 p-3">
-    Privacidad · Condiciones · Publicidad · Opciones de anuncios · Cookies · Más
+  <div class="text-xs text-gray-500 dark:text-gray-400
+              border-t border-gray-200 dark:border-gray-700
+              p-3 leading-relaxed">
+    <a href="#" class="hover:underline">Privacidad</a> ·
+    <a href="#" class="hover:underline">Condiciones</a> ·
+    <a href="#" class="hover:underline">Publicidad</a> ·
+    <a href="#" class="hover:underline">Opciones de anuncios</a> ·
+    <a href="#" class="hover:underline">Cookies</a> ·
+    <a href="#" class="hover:underline">Más</a>
+    <p class="mt-2 text-gray-400 dark:text-gray-500">
+      JOKIE © 2025
+    </p>
   </div>
 </div>
